@@ -1,7 +1,3 @@
-Certainly! Here’s a template for the `README.md` file for your GitHub repository. Feel free to modify it according to your preferences and future additions to the library.
-
----
-
 # Quantum Mechanics Library in Python
 
 This repository contains a Python library for quantum mechanics calculations inspired by the book *"The Theoretical Minimum: Quantum Mechanics"* by Leonard Susskind and Art Friedman. The library provides the basic tools for quantum mechanical calculations, including vectors, operators, inner products, and various quantum principles. This is still under development and lacks a lot of features. As I'm still in the learning process I might have made mistakes in the conceptual or programming part of things so any corrections or feedback are greatly appreciated.
