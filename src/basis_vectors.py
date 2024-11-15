@@ -1,4 +1,4 @@
-from vectors import Bra, Ket, inner_product
+from vectors import Ket
 from math import sqrt
 
 U = Ket([1,0]) # up 
