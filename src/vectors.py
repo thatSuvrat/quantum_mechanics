@@ -32,18 +32,19 @@ def inner_product(bra, ket):
         raise ValueError("Product requires one Bra and one Ket vector")
 
 if __name__ == "__main__":
-    psi_bra = Bra([1+1j, 0, -1j])
-    psi_ket = psi_bra.conjugate()
+    pass
+    # psi_bra = Bra([1+1j, 0, -1j])
+    # psi_ket = psi_bra.conjugate()
     
 
-    try:
-        inner_prod = inner_product(psi_bra, psi_ket)
-        print("Inner Product ⟨ψ|ψ⟩:", inner_prod)
-    except ValueError as e:
-        print(e)
+    # try:
+    #     inner_prod = inner_product(psi_bra, psi_ket)
+    #     print("Inner Product ⟨ψ|ψ⟩:", inner_prod)
+    # except ValueError as e:
+    #     print(e)
 
-    try:
-        inner_prod = inner_product(psi_ket,psi_ket) # Should raise an error
-        print("Inner Product ⟨ψ|ψ⟩:", inner_prod)
-    except ValueError as e:
-        print(e)
+    # try:
+    #     inner_prod = inner_product(psi_ket,psi_ket) # Should raise an error
+    #     print("Inner Product ⟨ψ|ψ⟩:", inner_prod)
+    # except ValueError as e:
+    #     print(e)

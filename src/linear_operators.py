@@ -11,14 +11,14 @@ class LinearOperator:
     def __repr__(self):
         return f"Operator:\n{self.matrix}\n"
     
-    def apply(self, ket):
+    def Apply(self, ket):
         if not isinstance(ket, Ket):
             raise TypeError("Can only apply to Ket Vector")
         if ket.vector.shape[0] != self.matrix.shape[1]:
             raise ValueError("Dimension Mismatch between Operator and Ket Vector")
         return Ket(np.dot(self.matrix, ket.vector))
     
-    def apply_to_bra(self, bra):
+    def Apply_to_bra(self, bra):
         if not isinstance(bra, Bra):
             raise TypeError('Can only apply to Bra Vector')
         
@@ -27,9 +27,17 @@ class LinearOperator:
     def HermitianConjugate(self):
         return(LinearOperator(self.matrix.conj().T))
     
-    def isHermitian(self):
+    def IsHermitian(self):
         return np.allclose(self.matrix, self.matrix.conj().T)
     
+    def Eigen(self):
+        eigenvalues, eigenvectors = np.linalg.eig(self.matrix)
+        
+        eigenvector_kets = [Ket(vec) for vec in eigenvectors.T] # Turning Eigenvectors to Ket Vectors
+        
+        return eigenvalues, eigenvector_kets
+        
+        
     # Adding Arithmetic Operators
     
     def __add__(self, other):
@@ -61,12 +69,15 @@ class LinearOperator:
         
         
 # Standard Pauli matrices
-sigma_x = LinearOperator([[0, 1], [1, 0]])  # Pauli X (flip)
-sigma_y = LinearOperator([[0, -1j], [1j, 0]])  # Pauli Y
-sigma_z = LinearOperator([[1, 0], [0, -1]])  # Pauli Z
-identity = LinearOperator([[1, 0], [0, 1]])  # Identity matrix
+SIGMA_X = LinearOperator([[0, 1], [1, 0]])  # Pauli X (flip)
+SIGMA_Y = LinearOperator([[0, -1j], [1j, 0]])  # Pauli Y
+SIGMA_Z = LinearOperator([[1, 0], [0, -1]])  # Pauli Z
+IDENTITY = LinearOperator([[1, 0], [0, 1]])  # Identity matrix
 
 
+# Defining Function to Create Operator Based on Pauli Matrices
+def create_operator(x, y, z):
+    return( x * SIGMA_X + y * SIGMA_Y + z * SIGMA_Z )
 
 if __name__ == '__main__':
     operator = LinearOperator([[1,2j],[1,-2j]])
@@ -80,3 +91,11 @@ if __name__ == '__main__':
     # print (sigma_z * (2 + 3j))
     # print(U)
     # print(operator.apply(U))
+    
+    # eigenvalue, eigenvector = SIGMA_X.Eigen()
+    # print('Eigenvalues are: ', eigenvalue)
+    # print('Eigenvectors are:' )
+    # print(R)
+    # print(L)
+    # for vector in eigenvector:
+    #     print(vector)
