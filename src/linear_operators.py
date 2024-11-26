@@ -77,7 +77,7 @@ IDENTITY = LinearOperator([[1, 0], [0, 1]])  # Identity matrix
 
 # Defining Function to Create Operator Based on Pauli Matrices
 def create_operator(x, y, z):
-    return( x * SIGMA_X + y * SIGMA_Y + z * SIGMA_Z )
+    return( LinearOperator((x * SIGMA_X + y * SIGMA_Y + z * SIGMA_Z).matrix) )
 
 if __name__ == '__main__':
     operator = LinearOperator([[1,2j],[1,-2j]])
