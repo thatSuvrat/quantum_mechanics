@@ -79,6 +79,20 @@ IDENTITY = LinearOperator([[1, 0], [0, 1]])  # Identity matrix
 def create_operator(x, y, z):
     return( LinearOperator((x * SIGMA_X + y * SIGMA_Y + z * SIGMA_Z).matrix) )
 
+class Unitary(LinearOperator):
+    def __init__(self, matrix):
+        super().__init__(matrix)
+        
+        hermitian_conjugate = self.HermitianConjugate()
+        
+        # Check if U†U = I
+        if not np.allclose((hermitian_conjugate * self).matrix, np.identity(self.matrix.shape[0])):
+            raise ValueError("U†U = I not satisfied")
+        
+        self.matrix = matrix
+
+
+
 if __name__ == '__main__':
     operator = LinearOperator([[1,2j],[1,-2j]])
     # print(sigma_z.apply(U))
@@ -96,6 +110,21 @@ if __name__ == '__main__':
     # print('Eigenvalues are: ', eigenvalue)
     # print('Eigenvectors are:' )
     # print(R)
-    # print(L)
+    # print(L)    # for vector in eigenvector:
+    
+    # Example of a Unitary matrix (Hadamard gate)
+    # Hadamard_matrix = (1/np.sqrt(2)) * np.array([[1, 1], [1, -1]])
+    # Hadamard = Unitary(Hadamard_matrix)
+    # print("Hadamard Gate (Unitary):")
+    # print(Hadamard)
+    
+    # Example of a non-Unitary matrix (will raise ValueError)
+    # non_unitary_matrix = np.array([[1, 0], [0, 2]])
+    
+    # This will raise a ValueError because non_unitary_matrix is not unitary
+    # Non_Unitary = Unitary(non_unitary_matrix)
+    # print(Non_Unitary)
+    
     # for vector in eigenvector:
+    #     print(vector)
     #     print(vector)
