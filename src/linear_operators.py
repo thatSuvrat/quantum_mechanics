@@ -92,6 +92,7 @@ class Unitary(LinearOperator):
         self.matrix = matrix
 
 
+HARAMARD = Unitary((1/np.sqrt(2)) * np.matrix([[1, 1], [1, -1]]))
 
 if __name__ == '__main__':
     operator = LinearOperator([[1,2j],[1,-2j]])
@@ -113,10 +114,10 @@ if __name__ == '__main__':
     # print(L)    # for vector in eigenvector:
     
     # Example of a Unitary matrix (Hadamard gate)
-    # Hadamard_matrix = (1/np.sqrt(2)) * np.array([[1, 1], [1, -1]])
-    # Hadamard = Unitary(Hadamard_matrix)
-    # print("Hadamard Gate (Unitary):")
-    # print(Hadamard)
+    Hadamard_matrix = (1/np.sqrt(2)) * np.matrix([[1, 1], [1, -1]])
+    Hadamard = Unitary(Hadamard_matrix)
+    print("Hadamard Gate (Unitary):")
+    print(Hadamard)
     
     # Example of a non-Unitary matrix (will raise ValueError)
     # non_unitary_matrix = np.array([[1, 0], [0, 2]])
