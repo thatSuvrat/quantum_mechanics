@@ -2,11 +2,13 @@
 
 
 from vectors import *
-from linear_operators import create_operator
+from linear_operators import create_operator, Unitary, SIGMA_X, SIGMA_Z
 from numpy import sin, cos, pi
+from math import sqrt
+import numpy as np
 # print(pi)
 
-# Uncomment all of this to check the exercise in lecture:
+# #Uncomment all of this to check the exercise in lecture:
 # theta = pi/6 # This should work for any value of theta. For calculating I used 30° or π/6
 # operator = create_operator(sin(theta), 0, cos(theta))
 # eigenvalues, eigenvectors = operator.Eigen()
@@ -52,3 +54,13 @@ from numpy import sin, cos, pi
 # for i in range(2):
 #     print(f"λ{i+1} = {int(vals[i])}")
 #     print(f" |λ{i+1}> = {vecs[i].vector}\n")
+
+# # Testing Linear Operators
+
+Random = create_operator(1,0,0)
+A = Ket([1+1j, 1-1j])
+B = Bra([1+2j,1+1j])
+
+evalu, evec = Random.Eigen()
+
+print( B*A )

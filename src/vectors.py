@@ -23,6 +23,12 @@ class Bra:
     def conjugate(self):
         # Return a Ket version (conjugate transpose)
         return Ket(self.vector.conj())
+    
+    def __mul__ (self,other):
+        if isinstance(other, Ket):
+            return np.dot(self.vector, other.vector)[0][0]
+        else:
+            pass
 
 
 def inner_product(bra, ket):
